@@ -1,0 +1,143 @@
+*{
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: 'Tilt Neon', cursive;
+}
+
+body{
+  background-color: #10002b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container{
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 30px 40px;
+  height: 100px;
+  width: 400px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.6s ease-out;
+}
+
+.busca{
+  height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.busca img{
+  width: 30px;
+}
+.busca input{
+  font-size: 20px;
+  color: #240046;
+  text-transform: uppercase;
+  padding-right: 32px;
+}
+.busca input::placeholder{
+  text-transform: capitalize;
+  color: #5a189a;
+}
+.busca button{
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #9d4edd;
+  transition: 0.5s ease;
+}
+.busca button:hover{
+  color: white;
+  background-color: #5a189a;
+}
+
+.clima-box{
+  text-align: center;
+  margin-top: 40px;
+}
+
+.clima-box img{
+  width: 60%;
+}
+.clima-box .temperatura{
+  position: relative;
+  color: #240046;
+  font-size: 50px;
+  font-weight: bold;
+}
+.clima-box .temperatura span{
+  position: absolute;
+  margin-left: 4px;
+  font-size: 20px;
+}
+.clima-box .descricao{
+  color: #240046;
+  font-size: 40px;
+  text-transform: capitalize;
+}
+
+.clima-detalhes{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 30px;
+}
+.clima-detalhes .umidade, .clima-detalhes .vento{
+  display: flex;
+  align-items: center;
+  width: 50%;
+  height: 100px;
+  color: #240046;
+}
+.clima-detalhes .umidade{
+ padding-left: 20px;
+ justify-content: flex-start;
+}
+.clima-detalhes .vento{
+  padding-left: 20px;
+  justify-content: flex-end;
+}
+.clima-detalhes span{
+  font-size: 20px;
+}
+.clima-detalhes img{
+  margin-right: 5px;
+  width: 40px;
+}
+
+.nao-encontrado{
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+  scale: 0;
+  opacity: 0;
+  display: none;
+}
+.nao-encontrado img{
+  width: 70%;
+}
+
+.clima-box, .clima-detalhes{
+  opacity: 0;
+  scale: 0;
+}
+
+.fadeIn{
+  animation: 0.5s fadeIn forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeIn{
+  to{
+    opacity: 1;
+    scale: 1;
+  }
+}
