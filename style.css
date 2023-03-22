@@ -4,11 +4,11 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
-  font-family: 'Tilt Neon', cursive;
+  font-family: 'Poppins', cursive;
 }
 
 body{
-  background-color: #10002b;
+  background: linear-gradient(to left, #343050, #7F5C6D);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,38 +24,51 @@ body{
   position: relative;
   overflow: hidden;
   transition: 0.6s ease-out;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .busca{
   height: min-content;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
-.busca img{
-  width: 30px;
+.busca i{
+  font-size: 28px;
+}
+
+.busca-1{
+  display: flex;
+  align-items: center;
 }
 .busca input{
   font-size: 20px;
-  color: #240046;
-  text-transform: uppercase;
-  padding-right: 32px;
+  color: #111111;
+  text-transform: capitalize;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 .busca input::placeholder{
-  text-transform: capitalize;
-  color: #5a189a;
+  text-transform: none;
+  color: #111111;
 }
 .busca button{
   cursor: pointer;
-  height: 50px;
-  width: 50px;
   border-radius: 50%;
-  background-color: #9d4edd;
   transition: 0.5s ease;
+  background-color: transparent;
 }
+.busca button i{
+  padding: 10px;
+  font-size: 24px;
+}
+
 .busca button:hover{
   color: white;
-  background-color: #5a189a;
+  background-color: #343050;
+}
+.busca button:active{
+    transform: translateY(2px);
 }
 
 .clima-box{
@@ -68,9 +81,9 @@ body{
 }
 .clima-box .temperatura{
   position: relative;
-  color: #240046;
+  color: #000;
   font-size: 50px;
-  font-weight: bold;
+  font-weight: 700;
 }
 .clima-box .temperatura span{
   position: absolute;
@@ -78,8 +91,8 @@ body{
   font-size: 20px;
 }
 .clima-box .descricao{
-  color: #240046;
-  font-size: 40px;
+  color: #000;
+  font-size: 35px;
   text-transform: capitalize;
 }
 
@@ -95,7 +108,7 @@ body{
   align-items: center;
   width: 50%;
   height: 100px;
-  color: #240046;
+  color: #111111;
 }
 .clima-detalhes .umidade{
  padding-left: 20px;

@@ -26,41 +26,85 @@ busca.addEventListener('click', () => {
       erro404.style.display = 'none';
       erro404.classList.remove('fadeIn');
 
-      const imagem = document.querySelector('.clima-box img');
+      const imagem = document.querySelector('.imagem-clima');
       const temperatura = document.querySelector('.clima-box .temperatura');
       const descricao = document.querySelector('.descricao');
       const umidade = document.querySelector('.clima-detalhes .umidade span');
       const vento = document.querySelector('.clima-detalhes .vento span');
 
-      const sunriseBruto = new Date(json.sys.sunrise * 1000);
-      const sunsetBruto = new Date(json.sys.sunset * 1000);
-      const sunriseLimpo = parseInt(sunriseBruto.toLocaleTimeString());
-      const sunsetLimpo = parseInt(sunsetBruto.toLocaleTimeString());
-      const hora = new Date().getHours();
-      const dia = hora >= sunriseLimpo && hora <= sunsetLimpo;
+      const sunrise = json.sys.sunrise;
+      const sunset = json.sys.sunset;
 
-      switch (json.weather[0].main) {
-        case 'Rain':
-          imagem.src = 'images/rain.png';
-          break;
-        case 'Clouds':
-          imagem.src = 'images/cloudy.png';
-          break;
-        case 'Haze':
-          imagem.src = 'images/wind.png';
-          break;
-        case 'Snow':
-          imagem.src = 'images/snowing.png';
-          break;
+      // Supondo que você tenha obtido o fuso horário da região pesquisada
+      const timezone = json.timezone;
 
-        default:
-          imagem.src = '';
-      }
+      // Obter a hora atual no fuso horário do cliente
+      const date = new Date();
+      const localTime = date.getTime();
+      const localOffset = date.getTimezoneOffset() * 60000;
+      const utcTime = localTime + localOffset;
+      const offset = timezone * 1000;
+      const clientTime = utcTime + offset;
 
-      if (json.weather[0].main == 'Clear' && dia) {
-        imagem.src = 'images/sunny.png';
+      // Converter os valores de sunrise e sunset para o horário local do fuso horário da região pesquisada
+      const dateRise = new Date((sunrise + timezone) * 1000);
+      const dateSet = new Date((sunset + timezone) * 1000);
+
+      // Obter os horários de nascer e pôr do sol no horário local do fuso horário da região pesquisada
+      const riseTime = dateRise.getTime();
+      const setTime = dateSet.getTime();
+
+      // Comparar a hora atual com os horários de nascer e pôr do sol para determinar se é dia ou noite
+      let isday;
+      if (clientTime > riseTime && clientTime < setTime) {
+        isday = true;
+        console.log('É dia');
       } else {
-        imagem.src = 'images/moony.png';
+        isday = false;
+        console.log('É noite');
+      }
+      console.log(json);
+
+      if (isday) {
+        switch (json.weather[0].main) {
+          case 'Clear':
+            imagem.src = 'images/sunny.png';
+            break;
+          case 'Rain':
+            imagem.src = 'images/rain.png';
+            break;
+          case 'Clouds':
+            imagem.src = 'images/cloudy.png';
+            break;
+          case 'Mist':
+            imagem.src = 'images/wind.png';
+            break;
+          case 'Snow':
+            imagem.src = 'images/snowing.png';
+            break;
+          default:
+            imagem.src = '';
+        }
+      } else {
+        switch (json.weather[0].main) {
+          case 'Clear':
+            imagem.src = 'images/moony.png';
+            break;
+          case 'Rain':
+            imagem.src = 'images/rain.png';
+            break;
+          case 'Clouds':
+            imagem.src = 'images/cloudymoon.png';
+            break;
+          case 'Mist':
+            imagem.src = 'images/wind.png';
+            break;
+          case 'Snow':
+            imagem.src = 'images/snowing.png';
+            break;
+          default:
+            imagem.src = '';
+        }
       }
 
       temperatura.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
