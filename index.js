@@ -3,6 +3,7 @@ const busca = document.querySelector('.busca button');
 const erro404 = document.querySelector('.nao-encontrado');
 const climaBox = document.querySelector('.clima-box');
 const climaDetalhes = document.querySelector('.clima-detalhes');
+const inputBusca = document.querySelector('.busca input');
 
 busca.addEventListener('click', () => {
   const APIKey = 'f5807aa17688a7c46f2358123ed14cd4';
@@ -32,38 +33,20 @@ busca.addEventListener('click', () => {
       const umidade = document.querySelector('.clima-detalhes .umidade span');
       const vento = document.querySelector('.clima-detalhes .vento span');
 
-      const sunrise = json.sys.sunrise;
-      const sunset = json.sys.sunset;
+      // Hora atual
+      const current_time = new Date(json.dt * 1000);
 
-      // Supondo que você tenha obtido o fuso horário da região pesquisada
-      const timezone = json.timezone;
+      // Obtem o nascer e o pôr do sol
+      const sunrise = new Date(json.sys.sunrise * 1000);
+      const sunset = new Date(json.sys.sunset * 1000);
 
-      // Obter a hora atual no fuso horário do cliente
-      const date = new Date();
-      const localTime = date.getTime();
-      const localOffset = date.getTimezoneOffset() * 60000;
-      const utcTime = localTime + localOffset;
-      const offset = timezone * 1000;
-      const clientTime = utcTime + offset;
-
-      // Converter os valores de sunrise e sunset para o horário local do fuso horário da região pesquisada
-      const dateRise = new Date((sunrise + timezone) * 1000);
-      const dateSet = new Date((sunset + timezone) * 1000);
-
-      // Obter os horários de nascer e pôr do sol no horário local do fuso horário da região pesquisada
-      const riseTime = dateRise.getTime();
-      const setTime = dateSet.getTime();
-
-      // Comparar a hora atual com os horários de nascer e pôr do sol para determinar se é dia ou noite
+      // Determina se é dia ou noite
       let isday;
-      if (clientTime > riseTime && clientTime < setTime) {
+      if (current_time >= sunrise && current_time <= sunset) {
         isday = true;
-        console.log('É dia');
       } else {
         isday = false;
-        console.log('É noite');
       }
-      console.log(json);
 
       if (isday) {
         switch (json.weather[0].main) {
@@ -76,11 +59,41 @@ busca.addEventListener('click', () => {
           case 'Clouds':
             imagem.src = 'images/cloudy.png';
             break;
-          case 'Mist':
+          case 'Haze':
             imagem.src = 'images/wind.png';
             break;
           case 'Snow':
             imagem.src = 'images/snowing.png';
+            break;
+          case 'Thunderstorm':
+            imagem.src = 'images/thunder.png';
+            break;
+          case 'Dust':
+            imagem.src = 'images/sandstorm.png';
+            break;
+          case 'Sand':
+            imagem.src = 'images/sandstorm.png';
+            break;
+          case 'Drizzle':
+            imagem.src = 'images/drizzle.png';
+            break;
+          case 'Mist':
+            imagem.src = 'images/fog.png';
+            break;
+          case 'Smoke':
+            imagem.src = 'images/fog.png';
+            break;
+          case 'Fog':
+            imagem.src = 'images/fog.png';
+            break;
+          case 'Ash':
+            imagem.src = 'images/fog.png';
+            break;
+          case 'Squall':
+            imagem.src = 'images/fog.png';
+            break;
+          case 'Tornado':
+            imagem.src = 'images/tornado.png';
             break;
           default:
             imagem.src = '';
@@ -102,6 +115,36 @@ busca.addEventListener('click', () => {
           case 'Snow':
             imagem.src = 'images/snowing.png';
             break;
+          case 'Thunderstorm':
+            imagem.src = 'images/thunder.png';
+            break;
+          case 'Dust':
+            imagem.src = 'images/sandstorm.png';
+            break;
+          case 'Sand':
+            imagem.src = 'images/sandstorm.png';
+            break;
+          case 'Drizzle':
+            imagem.src = 'images/drizzle.png';
+            break;
+          case 'Mist':
+            imagem.src = 'images/fog.png';
+            break;
+          case 'Smoke':
+            imagem.src = 'images/fog.png';
+            break;
+          case 'Fog':
+            imagem.src = 'images/fog.png';
+            break;
+          case 'Ash':
+            imagem.src = 'images/fog.png';
+            break;
+          case 'Squall':
+            imagem.src = 'images/fog.png';
+            break;
+          case 'Tornado':
+            imagem.src = 'images/tornado.png';
+            break;
           default:
             imagem.src = '';
         }
@@ -118,4 +161,11 @@ busca.addEventListener('click', () => {
       climaDetalhes.style.display = '';
       climaDetalhes.classList.add('fadeIn');
     });
+});
+
+inputBusca.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    busca.click();
+  }
 });
