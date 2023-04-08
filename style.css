@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   border: 0;
   padding: 0;
@@ -7,15 +7,15 @@
   font-family: 'Poppins', cursive;
 }
 
-body{
-  background: linear-gradient(to left, #343050, #7F5C6D);
+body {
+  background: linear-gradient(to left, #343050, #7f5c6d);
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
 }
 
-.container{
+.container {
   background-color: #fff;
   border-radius: 20px;
   padding: 30px 40px;
@@ -24,109 +24,112 @@ body{
   position: relative;
   overflow: hidden;
   transition: 0.6s ease-out;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
-.busca{
+.busca {
   height: min-content;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.busca i{
+.busca i {
   font-size: 28px;
 }
 
-.busca-1{
+.busca-1 {
   display: flex;
   align-items: center;
 }
-.busca input{
+.busca input {
   font-size: 20px;
   color: #111111;
   text-transform: capitalize;
   padding-right: 10px;
   padding-left: 10px;
 }
-.busca input::placeholder{
+.busca input::placeholder {
   text-transform: none;
   color: #111111;
 }
-.busca button{
+.busca button {
   cursor: pointer;
   border-radius: 50%;
   transition: 0.5s ease;
   background-color: transparent;
 }
-.busca button i{
+.busca button i {
   padding: 10px;
   font-size: 24px;
 }
 
-.busca button:hover{
+.busca button:hover {
   color: white;
   background-color: #343050;
 }
-.busca button:active{
-    transform: translateY(2px);
+.busca button:active {
+  transform: translateY(2px);
 }
 
-.clima-box{
+.clima-box {
   text-align: center;
   margin-top: 40px;
 }
 
-.clima-box img{
+.clima-box img {
   width: 60%;
 }
-.clima-box .temperatura{
+.clima-box .temperatura {
   position: relative;
   color: #000;
   font-size: 50px;
   font-weight: 700;
 }
-.clima-box .temperatura span{
+.clima-box .temperatura span {
   position: absolute;
   margin-left: 4px;
   font-size: 20px;
 }
-.clima-box .descricao{
+.clima-box .descricao {
   color: #000;
   font-size: 35px;
   text-transform: capitalize;
 }
 
-.clima-detalhes{
+.clima-detalhes {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
   margin-top: 30px;
 }
-.clima-detalhes .umidade, .clima-detalhes .vento{
+.clima-detalhes .umidade,
+.clima-detalhes .vento {
   display: flex;
   align-items: center;
   width: 50%;
   height: 100px;
   color: #111111;
 }
-.clima-detalhes .umidade{
- padding-left: 20px;
- justify-content: flex-start;
+.clima-detalhes .umidade {
+  padding-left: 20px;
+  justify-content: flex-start;
 }
-.clima-detalhes .vento{
+.clima-detalhes .vento {
   padding-left: 20px;
   justify-content: flex-end;
 }
-.clima-detalhes span{
+.clima-detalhes span {
   font-size: 20px;
 }
-.clima-detalhes img{
+.clima-detalhes img {
   margin-right: 5px;
   width: 40px;
 }
 
-.nao-encontrado{
+.nao-encontrado {
   width: 100%;
   text-align: center;
   margin-top: 40px;
@@ -134,22 +137,23 @@ body{
   opacity: 0;
   display: none;
 }
-.nao-encontrado img{
+.nao-encontrado img {
   width: 70%;
 }
 
-.clima-box, .clima-detalhes{
+.clima-box,
+.clima-detalhes {
   opacity: 0;
   scale: 0;
 }
 
-.fadeIn{
+.fadeIn {
   animation: 0.5s fadeIn forwards;
   animation-delay: 0.5s;
 }
 
-@keyframes fadeIn{
-  to{
+@keyframes fadeIn {
+  to {
     opacity: 1;
     scale: 1;
   }
